@@ -28,9 +28,9 @@ RUN apk add --no-cache \
   php82-xmlreader \
   php82-xmlwriter \
   php82-pgsql \
-  imagemagick \
-  imagemagick-dev \
   supervisor
+
+RUN apk add --no-cache ${PHPIZE_DEPS} imagemagick imagemagick-dev
 
 RUN pecl install -o -f imagick\
     &&  docker-php-ext-enable imagick
