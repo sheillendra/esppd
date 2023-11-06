@@ -7,5 +7,6 @@ COPY config/conf.d /etc/nginx/conf.d/
 
 COPY src/ .
 RUN composer install
+RUN php init --env=Development --overwrite=a
 
 EXPOSE 8080
