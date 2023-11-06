@@ -3,11 +3,11 @@ Instalacja
 
 ## Wymagania
 
-Minimalne wymagania tego szablonu projektu dla serwera to obsługa PHP 5.4.0.
+Minimalne wymagania tego szablonu projektu dla serwera to obsługa PHP 5.6.0.
 
 ## Instalacja za pomocą Composera
 
-Jeśli nie posiadasz zainstalowanego [Composera](http://getcomposer.org/), zapoznaj się najpierw z rozdziałem Przewodnika 
+Jeśli nie posiadasz zainstalowanego [Composera](https://getcomposer.org/), zapoznaj się najpierw z rozdziałem Przewodnika 
 [Instalacja Yii](https://github.com/yiisoft/yii2/blob/master/docs/guide-pl/start-installation.md#installing-via-composer).
 
 Po zainstalowaniu Composera możesz zainstalować aplikację korzystając z poniższych komend:
@@ -19,7 +19,7 @@ dowolną inną nazwę.
 
 ## Instalacja z pliku archiwum
 
-Wypakuj plik archiwum pobrany ze strony [yiiframework.com](http://www.yiiframework.com/download/) do folderu `advanced`, 
+Wypakuj plik archiwum pobrany ze strony [yiiframework.com](https://www.yiiframework.com/download/) do folderu `advanced`, 
 znajdującego się bezpośrednio w głównym folderze serwera Web.
 
 Następnie przejdź do instrukcji w sekcji poniżej.
@@ -39,7 +39,7 @@ zrobić raz na każdym nowym środowisku.
    W przypadku zautomatyzowanego procesu z użyciem skryptu, możesz uruchomić `init` w trybie nieinteraktywnym.
 
    ```
-   /path/to/php-bin/php /path/to/yii-application/init --env=Production --overwrite=All
+   /path/to/php-bin/php /path/to/yii-application/init --env=Production --overwrite=All --delete=All
    ```
 
 2. Stwórz nową bazę danych i zmodyfikuj odpowiednio jej dane w kluczu `components['db']` w pliku `common/config/main-local.php`.
@@ -283,7 +283,7 @@ pomocą adresów URL:
    vagrant up
    ```
    
-   (Przeczytaj [tutaj](http://www.wikihow.com/Change-Directories-in-Command-Prompt), w jaki sposób zmienić foldery w terminalu konsoli) 
+   (Przeczytaj [tutaj](https://www.wikihow.com/Change-Directories-in-Command-Prompt), w jaki sposób zmienić foldery w terminalu konsoli) 
 
 To wszystko. Teraz tylko musisz poczekać na zakończenie procesu! Po wszystkim możesz przejść do lokalnego projektu za 
 pomocą adresów URL:

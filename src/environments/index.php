@@ -10,7 +10,7 @@
  *     'environment name' => [
  *         'path' => 'directory storing the local files',
  *         'skipFiles'  => [
- *             // list of files that should only copied once and skipped if they already exist
+ *             // list of files that should only be copied once and skipped if they already exist
  *         ],
  *         'setWritable' => [
  *             // list of directories that should be set writable
@@ -29,90 +29,25 @@
  * ```
  */
 return [
-    /**
-     * local PC
-     */
-    'Alpha' => [
-        'path' => 'alpha',
+    'Development' => [
+        'path' => 'dev',
         'setWritable' => [
             'backend/runtime',
             'backend/web/assets',
             'console/runtime',
             'frontend/runtime',
             'frontend/web/assets',
-            'frontend/web/akun/assets',
-            'api/runtime',
-            'common/runtime',
-            'uploads'
         ],
         'setExecutable' => [
             'yii',
             'yii_test',
         ],
         'setCookieValidationKey' => [
-            'api/config/main-local.php',
             'backend/config/main-local.php',
             'common/config/codeception-local.php',
             'frontend/config/main-local.php',
         ],
     ],
-    /**
-     * server development
-     */
-    'Beta' => [
-        'path' => 'beta',
-        'setWritable' => [
-            'backend/runtime',
-            'backend/web/assets',
-            'console/runtime',
-            'frontend/runtime',
-            'frontend/web/assets',
-            'frontend/web/akun/assets',
-            'api/runtime',
-            'common/runtime',
-            'uploads',
-        ],
-        'setExecutable' => [
-            'yii',
-            'yii_test',
-        ],
-        'setCookieValidationKey' => [
-            'api/config/main-local.php',
-            'backend/config/main-local.php',
-            'common/config/codeception-local.php',
-            'frontend/config/main-local.php',
-        ],
-    ],
-    /**
-     * server production with debug and test
-     */
-    'Staging' => [
-        'path' => 'staging',
-        'setWritable' => [
-            'backend/runtime',
-            'backend/web/assets',
-            'console/runtime',
-            'frontend/runtime',
-            'frontend/web/assets',
-            'frontend/web/akun/assets',
-            'api/runtime',
-            'common/runtime',
-            'uploads',
-        ],
-        'setExecutable' => [
-            'yii',
-            'yii_test',
-        ],
-        'setCookieValidationKey' => [
-            'api/config/main-local.php',
-            'backend/config/main-local.php',
-            'common/config/codeception-local.php',
-            'frontend/config/main-local.php',
-        ],
-    ],
-    /**
-     * server production
-     */
     'Production' => [
         'path' => 'prod',
         'setWritable' => [
@@ -121,16 +56,11 @@ return [
             'console/runtime',
             'frontend/runtime',
             'frontend/web/assets',
-            'frontend/web/akun/assets',
-            'api/runtime',
-            'common/runtime',
-            'uploads',
         ],
         'setExecutable' => [
             'yii',
         ],
         'setCookieValidationKey' => [
-            'api/config/main-local.php',
             'backend/config/main-local.php',
             'frontend/config/main-local.php',
         ],

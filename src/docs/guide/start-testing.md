@@ -8,18 +8,19 @@ the `dev` environment. In the case where tests need to be executed in a `Product
 `yii_test.bat` must be manually copied from the `environments/dev` folder into the project root directory.
 
 Tests require an **additional database**, which will be cleaned up between tests.
-Create database `yii2advanced_test` in mysql (according to config in `common/config/test-local.php`) and execute: 
+This database will be used to hold data that matches the data in your live
+database. Its purpose is to run those tests that store data without affecting your own data.
+Create database in your database server, using a similar setup to the live database, so that the tests
+are run in an environment that is as close to your live environment as possible.
 
-
-```
-./yii_test migrate
-```
-
-Build the test suite:
-
-```
-vendor/bin/codecept build
-```
+   1. Your live database connection string is probably in `common/config/main-local.php`. It is 
+      something like `'dsn' => 'mysql:host=localhost;dbname=yii2advanced'`. Copy it to 
+      `common/config/test-local.php` and change the `dbname` so it is obvious that it is the 
+      test database: `'dsn' => 'mysql:host=localhost;dbname=yii2advanced_test'`.      
+   2. Create an empty database. In this example it would be `yii2advanced_test` in MySql (according to 
+      config in `common/config/test-local.php`).
+   3. Execute: `./yii_test migrate`.
+   4. Build the test suite: `./vendor/bin/codecept build`
 
 Then all sample tests can be started by running:
 
@@ -34,7 +35,7 @@ You will see output similar to this:
 It is recommended to keep your tests up to date. If a class, or functionality is deleted, corresponding tests should be deleted as well.
 You should run tests regularly, or better to set up Continuous Integration server for them.  
 
-Please refer to [Yii2 Framework Case Study](http://codeception.com/for/yii) to learn how to configure Codeception for your application.
+Please refer to [Yii2 Framework Case Study](https://codeception.com/for/yii) to learn how to configure Codeception for your application.
 
 ### Common
 
@@ -91,7 +92,7 @@ To execute acceptance tests do the following:
     vendor/bin/codecept build -- -c frontend
     ```
 
-1. Download [Selenium Server](http://www.seleniumhq.org/download/) and launch it:
+1. Download [Selenium Server](https://www.seleniumhq.org/download/) and launch it:
 
     ```
     java -jar ~/selenium-server-standalone-x.xx.x.jar

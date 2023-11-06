@@ -2,22 +2,18 @@
 
 namespace backend\controllers;
 
+use common\models\LoginForm;
 use Yii;
-use yii\web\Controller;
 use yii\filters\VerbFilter;
 use yii\filters\AccessControl;
-use backend\models\LoginForm;
-use common\models\SppdExt;
-use common\models\PegawaiExt;
-use common\models\UserExt;
-use common\models\WilayahExt;
+use yii\web\Controller;
+use yii\web\Response;
 
 /**
  * Site controller
  */
 class SiteController extends Controller
 {
-
     /**
      * {@inheritdoc}
      */
@@ -25,7 +21,7 @@ class SiteController extends Controller
     {
         return [
             'access' => [
-                'class' => AccessControl::className(),
+                'class' => AccessControl::class,
                 'rules' => [
                     [
                         'actions' => ['login', 'error'],
@@ -39,7 +35,7 @@ class SiteController extends Controller
                 ],
             ],
             'verbs' => [
-                'class' => VerbFilter::className(),
+                'class' => VerbFilter::class,
                 'actions' => [
                     'logout' => ['post'],
                 ],
@@ -54,7 +50,7 @@ class SiteController extends Controller
     {
         return [
             'error' => [
-                'class' => 'yii\web\ErrorAction',
+                'class' => \yii\web\ErrorAction::class,
             ],
         ];
     }
@@ -66,16 +62,13 @@ class SiteController extends Controller
      */
     public function actionIndex()
     {
-        if (Yii::$app->user->can(UserExt::ROLE_ADMIN_OPD)) {
-            return $this->redirect(['/pegawai']);
-        }
-        return $this->redirect(['/surat-tugas-pribadi']);
+        return $this->render('index');
     }
 
     /**
      * Login action.
      *
-     * @return string
+     * @return string|Response
      */
     public function actionLogin()
     {
@@ -83,22 +76,24 @@ class SiteController extends Controller
             return $this->goHome();
         }
 
+        $this->layout = 'blank';
+
         $model = new LoginForm();
         if ($model->load(Yii::$app->request->post()) && $model->login()) {
             return $this->goBack();
-        } else {
-            $model->password = '';
-
-            return $this->render('login', [
-                'model' => $model,
-            ]);
         }
+
+        $model->password = '';
+
+        return $this->render('login', [
+            'model' => $model,
+        ]);
     }
 
     /**
      * Logout action.
      *
-     * @return string
+     * @return Response
      */
     public function actionLogout()
     {

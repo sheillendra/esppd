@@ -3,22 +3,22 @@
 
 ## 要求
 
-此项目模板的最低要求是您的Web服务器支持PHP 5.4.0。
+此项目模板的最低要求是您的Web服务器支持PHP 5.6.0。
 
 ## 使用Composer安装
 
-如果您没有 [Composer](http://getcomposer.org/)，请按照最终指南的
+如果您没有 [Composer](https://getcomposer.org/)，请按照最终指南的
 [安装Yii](https://github.com/yiisoft/yii2/blob/master/docs/guide/start-installation.md#installing-via-composer) 部分中的说明进行安装。
 
 安装Composer后，您可以使用以下命令安装应用程序：
 
     composer create-project --prefer-dist yiisoft/yii2-app-advanced yii-application
 
-个命令将高级应用程序安装在名为 `yii-application` 的目录中。 如果需要，您可以选择不同的目录名称。 
+这个命令将高级应用程序安装在名为 `yii-application` 的目录中。 如果需要，您可以选择不同的目录名称。 
 
 ## 从归档文件安装
 
-将从 [yiiframework.com](http://www.yiiframework.com/download/) 下载的归档文件解压缩到直接位于Web根目录下的名为advanced的目录。
+将从 [yiiframework.com](https://www.yiiframework.com/download/) 下载的归档文件解压缩到直接位于Web根目录下的名为advanced的目录。
 
 然后按照下一小节中给出的说明进行操作。
 
@@ -36,7 +36,7 @@
    如果使用脚本自动化，可以在非交互模式下执行 `init` 。
 
    ```
-   /path/to/php-bin/php /path/to/yii-application/init --env=Production --overwrite=All
+   /path/to/php-bin/php /path/to/yii-application/init --env=Production --overwrite=All --delete=All
    ```
 
 2. 创建一个新的数据库，并相应地调整 `common/config/main-local.php` 中的 `components['db']` 配置。
@@ -265,7 +265,7 @@
    vagrant up
    ```
    
-   (猛击 [这里](http://www.wikihow.com/Change-Directories-in-Command-Prompt) 查看如何在命令提示符中更改目录) 
+   (猛击 [这里](https://www.wikihow.com/Change-Directories-in-Command-Prompt) 查看如何在命令提示符中更改目录) 
 
 等待完成后，在浏览器中访问如下URL即可
 

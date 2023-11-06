@@ -3,11 +3,11 @@ Instalación
 
 ## Requerimientos
 
-El requerimiento mínimo para esta plantilla es que su servidor web soporte PHP 5.4.0.
+El requerimiento mínimo para esta plantilla es que su servidor web soporte PHP 5.6.0.
 
 ## Instalación usando Composer
 
-Si no tienes [Composer](http://getcomposer.org/), sigue las instrucciones en la sección [Instalando Yii](https://github.com/yiisoft/yii2/blob/master/docs/guide-es/start-installation.md#installing-via-composer) de la guía definitiva para instalarlo.
+Si no tienes [Composer](https://getcomposer.org/), sigue las instrucciones en la sección [Instalando Yii](https://github.com/yiisoft/yii2/blob/master/docs/guide-es/start-installation.md#installing-via-composer) de la guía definitiva para instalarlo.
 
 Con Composer instalado, puedes entonces instalar la aplicación usando los siguientes comandos:
 
@@ -18,7 +18,7 @@ Puedes elegir un nombre de directorio diferente si tu quieres.
 
 ## Instalación desde un Archivo
 
-Extrae el archivo descargado desde [yiiframework.com](http://www.yiiframework.com/download/) a directorio nombrado `advanced` que está directamente bajo el Web root.
+Extrae el archivo descargado desde [yiiframework.com](https://www.yiiframework.com/download/) a directorio nombrado `advanced` que está directamente bajo el Web root.
 
 A continuación sigue las siguientes instrucciones dadas en la siguiente sub-sección.
 
@@ -36,7 +36,7 @@ Después de instalar la aplicación, tienes que realizar los siguientes pasos pa
    Por otra parte, en producción ejecuta `init` con el modo no interactivo.
 
    ```
-   php /path/to/yii-application/init --env=Production --overwrite=All
+   php /path/to/yii-application/init --env=Production --overwrite=All --delete=All
    ```
 
 2. Crea una nueva base de datos y ajusta la configuración de `components['db']` en `common/config/main-local.php` como corresponde.
