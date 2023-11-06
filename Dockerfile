@@ -60,7 +60,8 @@ USER nobody
 # Add application
 COPY --chown=nobody src/ /var/www/html/
 
-# ENV COMPOSER_ALLOW_SUPERUSER 1
+RUN PWD
+ENV COMPOSER_ALLOW_SUPERUSER 1
 
 # RUN curl -o /tmp/composer-setup.php https://getcomposer.org/installer \
 #   && curl -o /tmp/composer-setup.sig https://composer.github.io/installer.sig \
