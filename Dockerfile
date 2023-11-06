@@ -1,7 +1,8 @@
-FROM yiisoftware/yii2-php:8.2-fpm-nginx-min
+FROM yiisoftware/yii2-php:8.2-fpm-nginx
 
-RUN apk add --no-cache ${PHPIZE_DEPS} imagemagick imagemagick-dev
-
+RUN docker-php-ext-enable \
+    imagick
+    
 # Configure nginx - http
 COPY config/nginx.conf /etc/nginx/nginx.conf
 # Configure nginx - default server
