@@ -60,15 +60,20 @@ USER nobody
 # Add application
 COPY --chown=nobody src/ /var/www/html/
 
-ENV COMPOSER_ALLOW_SUPERUSER 1
-RUN curl -o /tmp/composer-setup.php https://getcomposer.org/installer \
-  && curl -o /tmp/composer-setup.sig https://composer.github.io/installer.sig \
-  && php -r "if (hash('SHA384', file_get_contents('/tmp/composer-setup.php')) !== trim(file_get_contents('/tmp/composer-setup.sig'))) { unlink('/tmp/composer-setup.php'); echo 'Invalid installer' . PHP_EOL; exit(1); }" \
-  && php /tmp/composer-setup.php \
-  && chmod a+x composer.phar \
-  && mv composer.phar /usr/local/bin/composer
+# ENV COMPOSER_ALLOW_SUPERUSER 1
 
-RUN /usr/local/bin/composer install
+# RUN curl -o /tmp/composer-setup.php https://getcomposer.org/installer \
+#   && curl -o /tmp/composer-setup.sig https://composer.github.io/installer.sig \
+#   && php -r "if (hash('SHA384', file_get_contents('/tmp/composer-setup.php')) !== trim(file_get_contents('/tmp/composer-setup.sig'))) { unlink('/tmp/composer-setup.php'); echo 'Invalid installer' . PHP_EOL; exit(1); }" \
+#   && php /tmp/composer-setup.php \
+#   && chmod a+x composer.phar \
+#   && mv composer.phar /usr/local/bin/composer
+
+RUN php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');"
+RUN php -r "if (hash_file('sha384', 'composer-setup.php') === 'e21205b207c3ff031906575712edab6f13eb0b361f2085f1f1237b7126d785e826a450292b6cfd1d64d92e6563bbde02') { echo 'Installer verified'; } else { echo 'Installer corrupt'; unlink('composer-setup.php'); } echo PHP_EOL;"
+RUN php composer-setup.php
+RUN php -r "unlink('composer-setup.php');"
+RUN composer.phar install
 
 # Expose the port nginx is reachable on
 EXPOSE 8080
