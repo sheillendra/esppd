@@ -32,8 +32,12 @@ RUN apk add --no-cache \
 
 RUN apk add --no-cache ${PHPIZE_DEPS} imagemagick imagemagick-dev
 
-RUN pecl install -o -f imagick\
-    &&  docker-php-ext-enable imagick
+RUN mkdir -p /usr/src/php/ext/imagick \
+    && curl -fsSL https://pecl.php.net/get/imagick | tar xvz -C "/usr/src/php/ext/imagick" --strip 1 \
+    && docker-php-ext-install imagick
+
+#RUN pecl install -o -f imagick\
+#    &&  docker-php-ext-enable imagick
 
 # Configure nginx - http
 COPY config/nginx.conf /etc/nginx/nginx.conf
