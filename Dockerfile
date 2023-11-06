@@ -60,14 +60,9 @@ USER nobody
 # Add application
 COPY --chown=nobody src/ /var/www/html/
 
-RUN curl -o /tmp/composer-setup.php https://getcomposer.org/installer \
-  && curl -o /tmp/composer-setup.sig https://composer.github.io/installer.sig \
-  && php -r "if (hash('SHA384', file_get_contents('/tmp/composer-setup.php')) !== trim(file_get_contents('/tmp/composer-setup.sig'))) { unlink('/tmp/composer-setup.php'); echo 'Invalid installer' . PHP_EOL; exit(1); }" \
-  && php /tmp/composer-setup.php \
-  && chmod a+x composer.phar \
-  && mv composer.phar /usr/local/bin/composer
-
-RUN /usr/local/bin/composer install
+RUN --rm --interactive --tty \
+  --volume $PWD:/app \
+  composer install
 
 # Expose the port nginx is reachable on
 EXPOSE 8080
