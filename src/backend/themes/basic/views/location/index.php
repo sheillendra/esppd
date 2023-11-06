@@ -1,0 +1,46 @@
+<?php
+
+use yii\helpers\Html;
+use yii\grid\GridView;
+
+/* @var $this yii\web\View */
+/* @var $searchModel backend\models\EselonSearch */
+/* @var $dataProvider yii\data\ActiveDataProvider */
+
+$this->title = 'Eselon Exts';
+$this->params['breadcrumbs'][] = $this->title;
+?>
+<div class="eselon-ext-index">
+
+    <h1><?= Html::encode($this->title) ?></h1>
+
+    <p>
+        <?= Html::a('Create Eselon Ext', ['create'], ['class' => 'btn btn-success']) ?>
+    </p>
+
+    <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
+
+    <?= GridView::widget([
+        'dataProvider' => $dataProvider,
+        'filterModel' => $searchModel,
+        'columns' => [
+            ['class' => 'yii\grid\SerialColumn'],
+
+            'kode',
+            'eselon',
+            'pangkat_min_id',
+            'pangkat_max_id',
+            'tingkat_sppd',
+            //'status',
+            //'keterangan:ntext',
+            //'created_at',
+            //'created_by',
+            //'updated_at',
+            //'updated_by',
+
+            ['class' => 'yii\grid\ActionColumn'],
+        ],
+    ]); ?>
+
+
+</div>
