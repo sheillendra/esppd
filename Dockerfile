@@ -57,6 +57,10 @@ USER nobody
 # Add application
 COPY --chown=nobody src/ /var/www/html/
 
+RUN composer install
+
+RUN php init --env=Development --overwrite=a
+
 # Expose the port nginx is reachable on
 EXPOSE 8080
 
