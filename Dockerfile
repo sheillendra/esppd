@@ -27,13 +27,7 @@ RUN apk add --no-cache \
   php82-xml \
   php82-xmlreader \
   php82-xmlwriter \
-  php82-pgsql \
   supervisor
-
-RUN apk add --no-cache ${PHPIZE_DEPS} imagemagick imagemagick-dev
-
-#RUN pecl install -o -f imagick\
-#    &&  docker-php-ext-enable imagick
 
 # Configure nginx - http
 COPY config/nginx.conf /etc/nginx/nginx.conf
@@ -54,15 +48,14 @@ RUN chown -R nobody.nobody /var/www/html /run /var/lib/nginx /var/log/nginx
 # Create symlink for php
 RUN ln -s /usr/bin/php82 /usr/bin/php
 
+#install composer
+COPY --from=composer:latest /usr/bin/composer /usr/local/bin/composer
+
 # Switch to use a non-root user from here on
 USER nobody
 
 # Add application
 COPY --chown=nobody src/ /var/www/html/
-
-COPY --from=composer:latest /usr/bin/composer /usr/local/bin/composer
-
-RUN composer install
 
 # Expose the port nginx is reachable on
 EXPOSE 8080
@@ -71,4 +64,4 @@ EXPOSE 8080
 CMD ["/usr/bin/supervisord", "-c", "/etc/supervisor/conf.d/supervisord.conf"]
 
 # Configure a healthcheck to validate that everything is up&running
-# HEALTHCHECK --timeout=10s CMD curl --silent --fail http://127.0.0.1:8080/fpm-ping
+HEALTHCHECK --timeout=10s CMD curl --silent --fail http://127.0.0.1:8080/fpm-ping
